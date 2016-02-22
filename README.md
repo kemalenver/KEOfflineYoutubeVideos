@@ -1,6 +1,6 @@
 # KEOfflineYoutubeVideos
 
-A toy app for searching youtube and downloading videos
+A toy iOS app written in Swift for searching youtube and downloading videos
 
 Instructions:
 
