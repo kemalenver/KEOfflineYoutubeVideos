@@ -1,0 +1,32 @@
+PODS:
+  - AFNetworking (3.0.4):
+    - AFNetworking/NSURLSession (= 3.0.4)
+    - AFNetworking/Reachability (= 3.0.4)
+    - AFNetworking/Security (= 3.0.4)
+    - AFNetworking/Serialization (= 3.0.4)
+    - AFNetworking/UIKit (= 3.0.4)
+  - AFNetworking/NSURLSession (3.0.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.0.4)
+  - AFNetworking/Security (3.0.4)
+  - AFNetworking/Serialization (3.0.4)
+  - AFNetworking/UIKit (3.0.4):
+    - AFNetworking/NSURLSession
+  - Realm (0.98.1):
+    - Realm/Headers (= 0.98.1)
+  - Realm/Headers (0.98.1)
+  - RealmSwift (0.98.1):
+    - Realm (= 0.98.1)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.0)
+  - RealmSwift
+
+SPEC CHECKSUMS:
+  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
+  Realm: ca4a4122e939e228e10694fc49011386cb2ecb07
+  RealmSwift: 7d3c7033427816a2c3417ba0d004d694987e503a
+
+COCOAPODS: 0.39.0
