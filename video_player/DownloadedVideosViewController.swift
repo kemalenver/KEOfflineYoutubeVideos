@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import RealmSwift
+import AVKit
+import AVFoundation
 
 class DownloadedVideosViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -67,12 +69,18 @@ class DownloadedVideosViewController: UIViewController, UITableViewDataSource, U
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let videoItem = self.videos[indexPath.row]
-                
-        if let playerController = self.storyboard?.instantiateViewControllerWithIdentifier("video_play_controller") as? PlayerViewController {
+
+        let player = AVPlayer(URL: NSURL(string: videoItem.downloadLocation!)!)
+        
+        let playerController = AVPlayerViewController()
+        
+        playerController.player = player
+        
+        self.presentViewController(playerController, animated: true, completion: {
             
-            playerController.localVideoUrl = NSURL(string: videoItem.downloadLocation!)
-            self.navigationController!.pushViewController(playerController, animated: true)
-        }
+            player.play()
+        })
+        
     }
     
     func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {

@@ -19,7 +19,6 @@
 		CFB09C1F1C71E63D00B1BCD1 /* ItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB09C1E1C71E63D00B1BCD1 /* ItemList.swift */; };
 		CFB09C211C71E79300B1BCD1 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB09C201C71E79300B1BCD1 /* Video.swift */; };
 		CFB09C231C72258400B1BCD1 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB09C221C72258400B1BCD1 /* VideoCell.swift */; };
-		CFB09C251C72365500B1BCD1 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB09C241C72365500B1BCD1 /* PlayerViewController.swift */; };
 		CFB09C271C7329E600B1BCD1 /* sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFB09C261C73298800B1BCD1 /* sample.mp4 */; };
 		CFB09C2A1C7330D700B1BCD1 /* HCYoutubeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB09C291C7330D700B1BCD1 /* HCYoutubeParser.m */; };
 /* End PBXBuildFile section */
@@ -62,7 +61,6 @@
 		CFB09C1E1C71E63D00B1BCD1 /* ItemList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemList.swift; sourceTree = "<group>"; };
 		CFB09C201C71E79300B1BCD1 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		CFB09C221C72258400B1BCD1 /* VideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
-		CFB09C241C72365500B1BCD1 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		CFB09C261C73298800B1BCD1 /* sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.mp4; sourceTree = "<group>"; };
 		CFB09C281C7330D700B1BCD1 /* HCYoutubeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCYoutubeParser.h; sourceTree = "<group>"; };
 		CFB09C291C7330D700B1BCD1 /* HCYoutubeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCYoutubeParser.m; sourceTree = "<group>"; };
@@ -144,7 +142,6 @@
 				CFB09C261C73298800B1BCD1 /* sample.mp4 */,
 				CF576AAF1C71D4000024C9BD /* AppDelegate.swift */,
 				CF576AB11C71D4000024C9BD /* ViewController.swift */,
-				CFB09C241C72365500B1BCD1 /* PlayerViewController.swift */,
 				CF576AB31C71D4000024C9BD /* Main.storyboard */,
 				CF576AB61C71D4000024C9BD /* Assets.xcassets */,
 				CF576AB81C71D4000024C9BD /* LaunchScreen.storyboard */,
@@ -363,7 +360,6 @@
 				CF185A881C74C60600EE78B0 /* DownloadedVideosViewController.swift in Sources */,
 				CF576AB21C71D4000024C9BD /* ViewController.swift in Sources */,
 				CFB09C211C71E79300B1BCD1 /* Video.swift in Sources */,
-				CFB09C251C72365500B1BCD1 /* PlayerViewController.swift in Sources */,
 				CFB09C2A1C7330D700B1BCD1 /* HCYoutubeParser.m in Sources */,
 				CFB09C1F1C71E63D00B1BCD1 /* ItemList.swift in Sources */,
 				CF576AB01C71D4000024C9BD /* AppDelegate.swift in Sources */,
@@ -512,6 +508,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = NO;
 				INFOPLIST_FILE = video_player/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kemalenver.video-player";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -528,6 +525,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = NO;
 				INFOPLIST_FILE = video_player/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kemalenver.video-player";
 				PRODUCT_NAME = "$(TARGET_NAME)";

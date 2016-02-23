@@ -6,8 +6,11 @@
 //  Copyright © 2016 kemal enver. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import RealmSwift
+import AVKit
+import AVFoundation
 import AFNetworking
 
 protocol DownloadableVideo: class {
@@ -107,11 +110,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let videoItem = self.itemList.videos[indexPath.row]
         
-        if let playerController = self.storyboard?.instantiateViewControllerWithIdentifier("video_play_controller") as? PlayerViewController {
+        let videoURL = NSURL(string: "https://www.youtube.com/watch?v=\(videoItem.videoId!)")
+        
+        HCYoutubeParser.h264videosWithYoutubeURL(videoURL, completeBlock: { (videoDictionary, error) -> Void in
             
-            playerController.youtubeLinkString = "https://www.youtube.com/watch?v=\(videoItem.videoId!)"
-            self.navigationController!.pushViewController(playerController, animated: true)
-        }
+            guard let youtubeLink = videoDictionary["small"] else { return }
+            
+            guard let youtubeVideoUrl = NSURL(string: youtubeLink as! String)  else { return }
+            
+            let player = AVPlayer(URL: youtubeVideoUrl)
+            
+            let playerController = AVPlayerViewController()
+            
+            playerController.player = player
+            
+            
+            self.presentViewController(playerController, animated: true, completion: {
+                
+                player.play()
+            })
+            
+        })
+        
     }
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -130,7 +150,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func performSearchWithQuery(query: String) {
         
-        let paramaters = ["q" : query, "part" : "snippet", "key" : "YOUR_KEY_HERE", "maxResults" : 50]
+        let paramaters = ["q" : query, "part" : "snippet", "key" : "API_KEY_HERE", "maxResults" : 50]
         
         self.sessionManager.GET("https://www.googleapis.com/youtube/v3/search", parameters: paramaters, progress: nil, success: { (sessionTask, responseObject) -> Void in
             
