@@ -21,6 +21,7 @@ class Video: Object {
     dynamic var videoId: String?
     dynamic var name: String?
     dynamic var summary: String?
+    dynamic var duration: String?
     dynamic var cachedImageLocation: String?
     dynamic var downloadLocation: String?
     
@@ -72,5 +73,10 @@ class Video: Object {
                 self.videoId = videoId
             }
         }
+    }
+    
+    func niceDuration() -> String {
+
+        return self.duration!
     }
 }

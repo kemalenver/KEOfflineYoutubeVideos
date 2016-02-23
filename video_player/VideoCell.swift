@@ -32,6 +32,13 @@ class VideoCell: UITableViewCell {
         }
     }
     
+    @IBOutlet weak var durationLabel: UILabel! {
+        
+        didSet {
+            
+        }
+    }
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     

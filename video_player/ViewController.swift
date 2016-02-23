@@ -24,6 +24,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var sessionManager = AFHTTPSessionManager()
     let itemList = ItemList()
     
+    let API_KEY = "xxxxx"
+    
     @IBOutlet weak var tableView: UITableView! {
         
         didSet {
@@ -81,6 +83,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCellWithIdentifier("video_cell", forIndexPath: indexPath) as! VideoCell
         cell.titleLabel.text = videoItem.name
         cell.descriptionLabel?.text = videoItem.summary
+        cell.durationLabel.text = videoItem.duration
         
         cell.downloadProgressView.progress = Float(videoItem.percentComplete)
         
@@ -150,7 +153,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func performSearchWithQuery(query: String) {
         
-        let paramaters = ["q" : query, "part" : "snippet", "key" : "API_KEY_HERE", "maxResults" : 50]
+        let paramaters = ["q" : query, "part" : "snippet", "key" : API_KEY, "maxResults" : 50]
         
         self.sessionManager.GET("https://www.googleapis.com/youtube/v3/search", parameters: paramaters, progress: nil, success: { (sessionTask, responseObject) -> Void in
             
@@ -160,7 +163,49 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
                 self.itemList.createVideos(videoList)
                 
-                self.tableView.reloadData()
+                let strings = self.itemList.videos.flatMap({ (video) -> String? in
+                    
+                    return video.videoId
+                })
+                
+                let videoIds = strings.joinWithSeparator(",")
+                
+                print(videoIds)
+                
+                let dataParamaters = ["part" : "contentDetails", "key" : self.API_KEY, "id" : videoIds]
+                
+                self.sessionManager.GET("https://www.googleapis.com/youtube/v3/videos", parameters: dataParamaters, progress: nil, success: { (sessionTask, responseObject) -> Void in
+                    
+                    if let resp = responseObject as? Dictionary<String, AnyObject> {
+                        
+                        let videoList = resp["items"] as! Array<AnyObject>
+                        
+                        for video in videoList {
+                            
+                            if let videoId = video["id"] as? String,
+                                contentDetails = video["contentDetails"] {
+                                    
+                                    let duration = contentDetails!["duration"] as? String
+                                    
+                                    for video in self.itemList.videos {
+                                        
+                                        if video.videoId == videoId {
+                                            
+                                            video.duration = duration
+                                        }
+                                    }
+                            }
+                        }
+                        
+                        self.tableView.reloadData()
+                    }
+                    
+                    
+                    }) { (sessionTask, error) -> Void in
+                        
+                        print(error)
+                }
+                
             }
             
             }) { (sessionTask, error) -> Void in
